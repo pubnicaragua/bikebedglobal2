@@ -19,7 +19,7 @@ import MainNavigator from "./navigation/MainNavigator"
 import HostNavigator from "./navigation/HostNavigator"
 
 // Screens
-import SplashScreen from "./screens/SplashScreen"
+import CustomSplashScreen from "./screens/SplashScreen"
 import LanguageSelectionScreen from "./screens/LanguageSelectionScreen"
 
 // Auth context
@@ -35,13 +35,13 @@ const RootNavigator = () => {
   const { user, loading } = useAuth()
 
   if (loading) {
-    return <SplashScreen />
+    return <CustomSplashScreen />
   }
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!user ? (
-        <Stack.Screen name="Main\" component={MainNavigator} />
+        <Stack.Screen name="Main" component={MainNavigator} />
       ) : user.user_metadata?.role === "host" ? (
         <Stack.Screen name="Host" component={HostNavigator} />
       ) : (
