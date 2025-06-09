@@ -1,28 +1,32 @@
 {
   "expo": {
-    "name": "bike-bed-global-official",
-    "slug": "snack-850f6f48-eb9d-4b91-b17a-1d4e6aa6c1ed",
+    "name": "Bike & Bed Global",
+    "slug": "bike-bed-global",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/image.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/image.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/image.png",
+        "backgroundColor": "#000000"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/image.png",
+      "bundler": "metro"
+    },
+    "scheme": "bike-bed-global"
   }
 }
