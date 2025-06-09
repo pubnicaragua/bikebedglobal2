@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StatusBar } from "expo-status-bar"
@@ -8,7 +8,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context"
 import { ThemeProvider } from "./context/ThemeContext"
 import { AuthProvider } from "./context/AuthContext"
 import { LanguageProvider } from "./context/LanguageContext"
-import AppLoading from "expo-app-loading"
+import * as SplashScreen from "expo-splash-screen"
 import * as Font from "expo-font"
 import { Ionicons } from "@expo/vector-icons"
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -27,6 +27,9 @@ import { useAuth } from "./context/AuthContext"
 
 const Stack = createNativeStackNavigator()
 
+// Prevent the splash screen from auto-hiding
+SplashScreen.preventAutoHideAsync()
+
 // Root navigator that handles auth state
 const RootNavigator = () => {
   const { user, loading } = useAuth()
@@ -42,7 +45,6 @@ const RootNavigator = () => {
       ) : user.user_metadata?.role === "host" ? (
         <Stack.Screen name="Host" component={HostNavigator} />
       ) : (
-        
         <Stack.Screen name="Auth" component={AuthNavigator} />
       )}
     </Stack.Navigator>
@@ -57,18 +59,28 @@ export default function App() {
   // Load fonts and other resources
   const loadResources = async () => {
     try {
-      
-
       // Check if language has been selected before
       const hasSelectedLanguage = await AsyncStorage.getItem("hasSelectedLanguage")
       setInitialLanguageSelected(!!hasSelectedLanguage)
+      setIsReady(true)
     } catch (e) {
       console.warn(e)
+      setIsReady(true)
     }
   }
 
+  useEffect(() => {
+    loadResources()
+  }, [])
+
+  useEffect(() => {
+    if (isReady) {
+      SplashScreen.hideAsync()
+    }
+  }, [isReady])
+
   if (!isReady) {
-    return <AppLoading startAsync={loadResources} onFinish={() => setIsReady(true)} onError={console.warn} />
+    return null
   }
 
   return (
