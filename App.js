@@ -41,7 +41,7 @@ const RootNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!user ? (
-        <Stack.Screen name="Main" component={MainNavigator} />
+        <Stack.Screen name="Main\" component={MainNavigator} />
       ) : user.user_metadata?.role === "host" ? (
         <Stack.Screen name="Host" component={HostNavigator} />
       ) : (
