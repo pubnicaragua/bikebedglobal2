@@ -25,7 +25,8 @@
     "react-native-reanimated": "~3.16.1",
     "react-native-gesture-handler": "~2.20.2",
     "@expo/vector-icons": "^14.0.2",
-    "lucide-react-native": "^0.344.0"
+    "lucide-react-native": "^0.344.0",
+    "react-native-dotenv": "^3.4.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
